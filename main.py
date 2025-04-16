@@ -13,6 +13,16 @@ def imprimir_tablero():
     print('+-------+-------+-------+')
 
 
+#Funcion para determinar el empate
+def empate():
+    for fila in board:
+        for celda in fila:
+            if celda not in ['X', 'O']:
+                return False
+    print('¡Empate!')
+    return True
+
+
 #Funcion para encontrar el ganador
 def victoria():
     #Filas iguales
@@ -127,6 +137,10 @@ while True:
     #Imprimimos el tablero
     imprimir_tablero()
 
+    #Verificamos empate
+    if empate():
+        break
+
     #Verificamos ganador
     if victoria():
         break
@@ -149,8 +163,7 @@ while True:
     imprimir_tablero()
 
     #Verificamos empate
-    if not num_disp:
-        print("¡Empate!")
+    if empate():
         break
 
     #Verificamos ganador
