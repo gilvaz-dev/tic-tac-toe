@@ -15,7 +15,7 @@ def imprimir_tablero():
 
 #Funcion para encontrar el ganador
 def victoria():
-    #Filas
+    #Filas iguales
     if board[0][0] == board[0][1] == board[0][2] and board[0][0] in ['X', 'O']:
         if board[0][0] == 'X':
             print('¡La computadora ha ganado!')
@@ -39,7 +39,7 @@ def victoria():
         return True
 
 
-    #Columnas
+    #Columnas iguales
     if board[0][0] == board[1][0] == board[2][0] and board[0][0] in ['X', 'O']:
         if board[0][0] == 'X':
             print('¡La computadora ha ganado!')
@@ -62,7 +62,7 @@ def victoria():
         return True
 
 
-    #Diagonales
+    #Diagonales iguales
     if board[0][0] == board[1][1] == board[2][2] and board[0][0] in ['X', 'O']:
         if board[0][0] == 'X':
             print('¡La computadora ha ganado!')
@@ -80,7 +80,7 @@ def victoria():
     return False
 
 
-#Lista completa del 1 al 9
+#Lista inicial completa del 1 al 9
 flat_board = [i for i in range(1, 10)]
 board = []
 
@@ -90,7 +90,7 @@ for i in range(0, 9, 3):
     board.append(flat_board[i:i+3])
 
 
-#Asignamos el valor de X del turno del ordenador
+#Asignamos el valor de X del primer turno del ordenador
 num = 5
 fila = (num - 1) // 3
 columna = (num - 1) % 3
@@ -99,9 +99,9 @@ board[fila][columna] = 'X'
 #Imprimimos el tablero
 imprimir_tablero()
 
-
+#Bucle para los turnos del juego hasta tener victoria o empate
 while True:
-    #Preguntamos al usuario que numero de movimiento desea ingresar
+    #El usuario ingresa su movimiento
     while True:
         try:
             num = int(input('Qué movimiento deseas realizar? '))
@@ -147,6 +147,11 @@ while True:
 
     #Imprimimos el tablero
     imprimir_tablero()
+
+    #Verificamos empate
+    if not num_disp:
+        print("¡Empate!")
+        break
 
     #Verificamos ganador
     if victoria():
